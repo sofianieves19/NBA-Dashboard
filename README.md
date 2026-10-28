@@ -94,17 +94,7 @@ If you edit the code, rebuild the image (`docker build ...`) for the changes to 
 
 **Chart font:** `FONT_FAMILY` in `app.py` controls the chart text. Keep it in sync with the font in the CSS block.
 
-## Deploying
 
-The app is a standard container, so it can run anywhere that runs Docker. For AWS, the general path is:
-
-1. Create an Amazon ECR repository.
-2. Build the image with `--platform linux/amd64`, tag it, and push it to ECR.
-3. Run it with a container service such as Amazon ECS Express Mode (container port `8501`, health check path `/_stcore/health`), or a simpler option like Amazon Lightsail containers.
-
-**Important:** NBA.com often blocks requests from cloud servers, so live API calls may time out once the app is deployed, even though they work on a home network. The usual workaround is to download shot data ahead of time on your own machine, save it as CSV or Parquet files, include them in the image, and have the app load those files instead of calling the API.
-
-Running a container on AWS costs money while it is running. Delete the service when you're done experimenting, and set a billing alert.
 
 ## Troubleshooting
 
